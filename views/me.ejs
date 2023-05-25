@@ -1,0 +1,26 @@
+<div class="container">
+  <h1>User Details</h1>
+  
+  <% if (user) { %>
+    <div class="card">
+      <div class="card-body">
+        <dl class="row">
+          <dt class="col-sm-3">Username</dt>
+          <dd class="col-sm-9"><%= user.username %></dd>
+
+          <dt class="col-sm-3">Nickname</dt>
+          <dd class="col-sm-9"><%= user.nickname %></dd>
+        </dl>
+      </div>
+    </div>
+    <div class="col-12 mt-3">
+      <a href="/auth/me/edit/<%= user._id %>" class="btn btn-primary me-2">Update</a>
+      <form id="deleteForm" action="/user/<%= user._id %>?_method=DELETE" method="POST" style="display: inline;">
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
+      </form>
+    </div>
+  <% } else { %>
+    <p>No user found.</p>
+  <% } %>
+  
+</div>

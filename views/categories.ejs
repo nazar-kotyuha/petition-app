@@ -1,0 +1,58 @@
+
+<h1 class="pb-4">
+  <%= typeof currentCategory !== 'undefined' ? currentCategory.name : 'Explore Categories' %>
+  <% if (typeof currentCategory !== 'undefined' && user !== null) { %>
+    <% if (currentCategory.creator.toString() == user._id) { %>
+      <a href="/edit/category/<%= currentCategory._id %>" class="btn btn-primary" style="background-color: gray;">Edit Category</a>
+    <% } %>
+  <% } %>
+</h1>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/categories">Categories</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Explore Petitions</li>
+  </ol>
+</nav>
+
+  <div class="row row-cols-2 row-cols-lg-6 g-2 g-lg-3 py-4">
+    <% if(typeof categories !== 'undefined' && categories.length > 0) { %>
+      <% categories.forEach(function(category, index) {  %>
+    <a href="categories/<%= category._id %>" class="col text-center category__link">
+      <div class="category__img shadow">
+        <img src="uploads/<%- category.image %>" alt="<%- category.name %>" loading="lazy">
+      </div>
+      <div class="pt-1"><%- category.name %></div>
+    </a>
+    <% }) %>
+
+    <% if (user !== null) { %>
+      <a href="/submit-category" class="col text-center category__link">
+        <div class="category__img shadow">
+          <img src="img/view_all.jpeg" alt="View all categories" loading="lazy">
+        </div>
+        <div class="pt-1">Add New</div>
+      </a>
+    <% } %>
+    <% } %>
+  </div>
+
+  <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+    <% if(typeof petitionsByCategory !== 'undefined' && petitionsByCategory.length > 0) { %>
+      <% petitionsByCategory.forEach(function(petition, index){ %>
+      <a href="/petition/<%= petition._id %>" class="col text-center category__link">
+        <div class="category__img category__img--large shadow">
+          <img src="/uploads/<%= petition.image %>" alt="<%= petition.name %>" loading="lazy">
+        </div>
+        <div class="pt-1"><%= petition.name %></div>
+      </a>
+      <% }) %>
+    <% } else if(typeof petitionsByCategory !== 'undefined') { %>
+      <p>No items found.</p>
+    <% } %>
+  </div>
+
+
+  
+ 

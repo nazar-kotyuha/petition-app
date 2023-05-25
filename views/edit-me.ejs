@@ -1,0 +1,29 @@
+<div class="px-4 py-5 my-5 text-center">
+  <h1 class="display-5 fw-bold">Edit Your User Details</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead">Update your user details to reach thousands of people around the world. Fill out the form below to make changes.</p>
+  </div>
+</div>
+<div class="row justify-content-center">
+  
+<div class="col-8">
+
+
+<form action="/auth/me/edit/<%= user._id %>?_method=PUT" enctype="multipart/form-data" method="POST">
+
+  <div class="row g-3">
+
+    <div class="col-12">
+      <label for="nickname class="form-label">Nickname</label>
+      <input type="text" name="nickname" id="nickname" class="form-control" value="<%= user.nickname %>" required>
+    </div>
+    
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Edit nickname</button>   
+    </div>
+
+ 
+  </div>
+  </form>
+</div>
+</div>

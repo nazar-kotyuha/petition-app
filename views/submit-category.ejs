@@ -1,0 +1,53 @@
+<div class="px-4 py-5 my-5 text-center">
+  <h1 class="display-5 fw-bold">Submit Your Category</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead">Share your category of petitions with thousands of people around the world. Fill out the form below to get started.</p>
+  </div>
+</div>
+<div class="row justify-content-center">
+
+<% if(infoSubmitObj != '') { %>
+  <div class="col-8 alert alert-success" role="alert">
+    <%= infoSubmitObj %>
+  </div>
+<% } %>
+
+<% if(infoErrorsObj != '') { %>
+  <div class="col-8 alert alert-danger" role="alert">
+    <%= infoErrorsObj[0].message %>
+  </div>
+<% } %>
+  
+<div class="col-8">
+
+
+<form action="/submit-category" enctype="multipart/form-data" method="POST">
+
+  <div class="row g-3">
+
+    <div class="col-12">
+      <label for="name" class="form-label">Category Name</label>
+      <input type="text" name="name" id="name" class="form-control" required>
+    </div>
+
+    <div class="col-12" style="display: none;">
+      <label for="creator" class="form-label">Creator</label>
+      <input type="text" name="creator" id="creator" value="<%= user._id %>" style="visibility: hidden;" class="form-control" required>
+    </div>
+
+    <div class="col-12">
+      <label for="image">Category Image</label>
+      <input type="file" class="form-control" name="image" accept="image/*" onchange="previewImage(event)" required>
+      <img id="currentImage" class="current-image" style="max-width: 200px; margin-top: 10px;">
+    </div>
+
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Submit Category</button>
+    </div>
+
+  </div>
+
+</form>
+
+  </div>
+</div>
